@@ -9,13 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.9.14",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "@huggingface/inference": "^3.0.0",
+    "@prisma/client": "^6.2.1",
+    "next": "15.1.5",
+    "prisma": "^6.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "15.1.5"
+    "react-markdown": "^9.0.3",
+    "react-toastify": "^11.0.3",
+    "sonner": "^1.7.2"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3",
     "eslint": "^9",
-    "eslint-config-next": "15.1.5",
-    "@eslint/eslintrc": "^3"
+    "eslint-config-next": "15.1.5"
   }
 }
