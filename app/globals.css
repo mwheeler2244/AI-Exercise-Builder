@@ -58,6 +58,7 @@ main {
   font-size: 0.875rem;
   padding-block: 0.75rem;
   font-weight: 500;
+  cursor: pointer;
 }
 
 .add-muscle-group-form > button::before {
@@ -208,9 +209,17 @@ main {
 .auth-buttons > * {
   background-color: black;
   color: white;
-  padding: 0.25rem;
+  padding: 0.5rem 1rem;
   font-size: 1rem;
   cursor: pointer;
+}
+.sign-in {
+  background-color: #e63946;
+  border: none;
+  border-radius: 8px;
+}
+.sign-in:hover {
+  scale: 1.1;
 }
 
 /* Global styles for the Saved component */

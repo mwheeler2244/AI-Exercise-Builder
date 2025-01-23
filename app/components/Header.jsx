@@ -17,7 +17,7 @@ export default async function Header() {
       </div>
       <div className="auth-buttons">
         <SignedOut>
-          <SignInButton />
+          <SignInButton className="sign-in" />
         </SignedOut>
         <SignedIn>
           <UserButton />
