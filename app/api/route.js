@@ -1,11 +1,21 @@
-// app/api/route.js
 import { HfInference } from "@huggingface/inference";
 import { NextResponse } from "next/server";
 
-const SYSTEM_PROMPT = `
-You are an assistant that receives a list of muscle groups that a user has and suggests a workout they could do with some those muscle groups. the workout should be around 30 minutes and include at least 3 different movements. Format your response in markdown to make it easier to render to a web page`;
+// Validate muscle groups
+const VALID_MUSCLE_GROUPS = [
+  "chest",
+  "back",
+  "shoulders",
+  "biceps",
+  "triceps",
+  "quadriceps",
+  "hamstrings",
+  "calves",
+  "abs",
+  "glutes",
+];
 
-// Make sure we have an API key
+// Ensure API key is set
 if (!process.env.HUGGINGFACE_API_KEY) {
   throw new Error("HUGGINGFACE_API_KEY is not set in environment variables");
 }
@@ -15,9 +25,9 @@ const hf = new HfInference(process.env.HUGGINGFACE_API_KEY);
 
 export async function POST(request) {
   try {
-    const body = await request.json();
-    const { muscles } = body;
+    const { muscles } = await request.json();
 
+    // Validate input muscles
     if (!muscles || !Array.isArray(muscles)) {
       return NextResponse.json(
         { error: "Invalid muscles data" },
@@ -25,34 +35,74 @@ export async function POST(request) {
       );
     }
 
-    const exercise = muscles.join(", ");
+    // Check for invalid muscle groups
+    const invalidMuscles = muscles.filter(
+      (muscle) => !VALID_MUSCLE_GROUPS.includes(muscle.toLowerCase())
+    );
 
-    try {
-      // Using gpt2 model instead
-      const response = await hf.textGeneration({
-        model: "gpt2",
-        inputs: `Create a 30-minute workout routine for this muscle group: ${exercise}. Include at least 3 different exercises.`,
-        parameters: {
-          max_new_tokens: 200,
-          temperature: 0.7,
-          return_full_text: false,
-        },
-      });
-
-      // Format the response
-      const workoutPlan = `# Your 30-Minute Workout Plan\n\n${response.generated_text}`;
-      return NextResponse.json({ plan: workoutPlan });
-    } catch (apiError) {
-      console.error("HuggingFace API Error:", apiError);
+    if (invalidMuscles.length > 0) {
       return NextResponse.json(
-        { error: "Failed to connect to HuggingFace API: " + apiError.message },
-        { status: 500 }
+        { error: `Invalid muscle groups: ${invalidMuscles.join(", ")}` },
+        { status: 400 }
       );
     }
+
+    // Detailed prompt for workout generation
+    const prompt = `Create a detailed 30-minute workout plan targeting these muscle groups: ${muscles.join(
+      ", "
+    )}
+
+Guidelines:
+- Focus on the specified muscle groups
+- Design a balanced, safe workout
+- Include 3-4 distinct exercises
+- Specify exercise names, sets, reps, and brief form tips
+- Consider minimal equipment requirements
+
+Output Format:
+# Workout Plan for [Muscle Groups]
+
+## Warm-up (5 minutes)
+- Brief dynamic stretching and light cardio
+
+## Main Workout (20 minutes)
+1. Exercise Name
+   - Sets: X
+   - Reps: Y
+   - Form Tips: Brief technique guidance
+
+2. Exercise Name
+   - Sets: X
+   - Reps: Y
+   - Form Tips: Brief technique guidance
+
+3. Exercise Name
+   - Sets: X
+   - Reps: Y
+   - Form Tips: Brief technique guidance
+
+## Cool-down (5 minutes)
+- Static stretching for worked muscle groups`;
+
+    // Generate workout plan using a capable model
+    const response = await hf.textGeneration({
+      model: "mistralai/Mistral-7B-Instruct-v0.2",
+      inputs: prompt,
+      parameters: {
+        max_new_tokens: 500,
+        temperature: 0.7,
+        return_full_text: false,
+      },
+    });
+
+    // Format the response
+    const workoutPlan = `# Your 30-Minute Workout Plan\n\n${response.generated_text.trim()}`;
+
+    return NextResponse.json({ plan: workoutPlan });
   } catch (error) {
     console.error("API Error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to generate workout plan" },
+      { error: "Failed to generate workout plan" },
       { status: 500 }
     );
   }
