@@ -1,36 +1,25 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏋️‍♂️ AI-Generated 30-Minute Workouts
 
-## Getting Started
+This project leverages the power of large language models (LLMs) to generate personalized 30-minute workout routines. Users input one or more muscle groups, and the app builds a workout plan with at least three different movements.
 
-First, run the development server:
+## 🚀 Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This application is built with the following technologies:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **[Next.js](https://nextjs.org/):** A React-based framework for building modern web applications.  
+- **[Clerk](https://clerk.dev/):** A simple and secure authentication solution for user sign-ups and logins.  
+- **[Neon](https://neon.tech/):** A modern PostgreSQL database solution for storing user data and app state.  
+- **[Prisma](https://www.prisma.io/):** An ORM for interacting with the Neon database.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ✨ Features
 
-## Learn More
+- **Personalized Workouts:** Generate a 30-minute workout plan tailored to the muscle groups you select.  
+- **AI-Powered:** Uses a Hugging Face LLM to dynamically create workout routines.  
+- **User Accounts:** Secure authentication and user management with Clerk.  
+- **Database-Backed:** Stores user inputs and workout history using Neon and Prisma.  
+- **Clean UI:** Built with a responsive, user-friendly interface using Next.js.  
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
