@@ -18,9 +18,10 @@ export default function SaveExercise({ exercisePlan }) {
       }
     } catch (error) {
       console.error("Error saving joke:", error);
-      const errorMessage = error.message.includes("already saved")
-        ? "You've already saved this exercise!"
-        : null;
+      const errorMessage =
+        error.message.includes("already saved") ??
+        "You've already saved this exercise!";
+
       toast.error(errorMessage);
     } finally {
       setIsSaving(false);
