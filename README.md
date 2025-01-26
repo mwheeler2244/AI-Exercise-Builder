@@ -12,10 +12,10 @@ Check out the live application here: [**AI Workout Builder**](https://ai-exercis
 
 This application is built with the following technologies:
 
-- **[Next.js]:** A React-based framework for building modern web applications.  
-- **[Clerk]:** A simple and secure authentication solution for user sign-ups and logins.  
-- **[Neon]:** A modern PostgreSQL database solution for storing user data and app state.  
-- **[Prisma]:** An ORM for interacting with the Neon database.
+- **Next.js:** A React-based framework for building modern web applications.  
+- **Clerk:** A simple and secure authentication solution for user sign-ups and logins.  
+- **Neon:** A modern PostgreSQL database solution for storing user data and app state.  
+- **Prisma:** An ORM for interacting with the Neon database.
 
 ---
 
