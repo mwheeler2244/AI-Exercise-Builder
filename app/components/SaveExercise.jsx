@@ -20,7 +20,7 @@ export default function SaveExercise({ exercisePlan }) {
       console.error("Error saving joke:", error);
       const errorMessage = error.message.includes("already saved")
         ? "You've already saved this exercise!"
-        : "Failed to save exercise. Please try again.";
+        : null;
       toast.error(errorMessage);
     } finally {
       setIsSaving(false);
