@@ -1,6 +1,5 @@
 // app/lib/actions.js
 "use server";
-import { Prisma } from "@prisma/client";
 
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
@@ -12,7 +11,7 @@ export async function getExerciseRoutine(muscles) {
   }
 
   try {
-    const response = await fetch("http://localhost:3000/api", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
