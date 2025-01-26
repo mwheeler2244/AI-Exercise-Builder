@@ -60,7 +60,6 @@ Guidelines:
 - Consider minimal equipment requirements
 
 Output Format:
-# Workout Plan for [Muscle Groups]
 
 ## Warm-up (5 minutes)
 - Brief dynamic stretching and light cardio
@@ -97,6 +96,8 @@ Output Format:
 
     // Format the response
     const workoutPlan = `# Your 30-Minute Workout Plan\n\n${response.generated_text.trim()}`;
+
+    console.log({ workoutPlan });
 
     return NextResponse.json({ plan: workoutPlan });
   } catch (error) {

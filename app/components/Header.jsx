@@ -9,7 +9,7 @@ export default async function Header() {
     <header className="header">
       <div className="header-content">
         <Link href="/" className="header-title">
-          Build Your Daily Workout
+          Daily Workout
         </Link>
         <Link className="saved-title" href="saved">
           Saved{" "}
