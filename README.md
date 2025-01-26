@@ -2,14 +2,20 @@
 
 This project leverages the power of large language models (LLMs) to generate personalized 30-minute workout routines. Users input one or more muscle groups, and the app builds a workout plan with at least three different movements.
 
+
+## 🌐 **Live Demo**
+Check out the live application here: [**AI Workout Builder**](https://ai-exercise-builder.vercel.app)
+
+
+
 ## 🚀 Tech Stack
 
 This application is built with the following technologies:
 
-- **[Next.js](https://nextjs.org/):** A React-based framework for building modern web applications.  
-- **[Clerk](https://clerk.dev/):** A simple and secure authentication solution for user sign-ups and logins.  
-- **[Neon](https://neon.tech/):** A modern PostgreSQL database solution for storing user data and app state.  
-- **[Prisma](https://www.prisma.io/):** An ORM for interacting with the Neon database.
+- **[Next.js]:** A React-based framework for building modern web applications.  
+- **[Clerk]:** A simple and secure authentication solution for user sign-ups and logins.  
+- **[Neon]:** A modern PostgreSQL database solution for storing user data and app state.  
+- **[Prisma]:** An ORM for interacting with the Neon database.
 
 ---
 
